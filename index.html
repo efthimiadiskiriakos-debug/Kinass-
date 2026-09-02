@@ -3,131 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Μια ερώτηση ❤️</title>
+<title>Μια σημαντική ερώτηση 💗</title>
 
 <style>
-    * {
-        box-sizing: border-box;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #fff0f6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff4f8b;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    background: rgba(255,255,255,0.9);
+    padding: 35px 25px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(255, 80, 140, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.question {
+    font-size: 23px;
+    font-weight: bold;
+    color: #444;
+    min-height: 70px;
+}
+
+.counter {
+    font-size: 14px;
+    color: #ff8bb5;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    position: relative;
+    min-height: 60px;
+}
+
+button {
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#yes {
+    background: #ff4f8b;
+    color: white;
+    box-shadow: 0 6px 15px rgba(255, 79, 139, 0.3);
+}
+
+#yes:hover {
+    transform: scale(1.08);
+}
+
+#no {
+    background: #eee;
+    color: #555;
+    position: relative;
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 25px;
+    animation: float 5s linear forwards;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
     }
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #ffd6e7, #ffeef5);
-        overflow: hidden;
+    20% {
+        opacity: 1;
     }
 
-    .box {
-        background: white;
-        width: 90%;
-        max-width: 430px;
-        padding: 35px 25px;
-        border-radius: 25px;
-        text-align: center;
-        box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#result {
+    display: none;
+}
+
+.big-heart {
+    font-size: 75px;
+    animation: beat 1s infinite;
+}
+
+@keyframes beat {
+    0%, 100% {
+        transform: scale(1);
     }
 
-    h1 {
-        color: #ff4f87;
-        margin-bottom: 15px;
+    50% {
+        transform: scale(1.2);
     }
+}
 
-    p {
-        color: #555;
-        font-size: 18px;
-    }
+.result-text {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ff4f8b;
+}
 
-    button {
-        border: none;
-        padding: 14px 28px;
-        margin: 10px;
-        border-radius: 15px;
-        font-size: 18px;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    #yes {
-        background: #ff4f87;
-        color: white;
-    }
-
-    #yes:hover {
-        transform: scale(1.1);
-    }
-
-    #no {
-        background: #ddd;
-        color: #333;
-        position: relative;
-    }
-
-    .heart {
-        font-size: 60px;
-        animation: pulse 1s infinite;
-    }
-
-    @keyframes pulse {
-        50% {
-            transform: scale(1.15);
-        }
-    }
-
-    #result {
-        display: none;
-    }
+.small-text {
+    color: #777;
+    font-size: 16px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="box" id="questionBox">
+<div class="container" id="quiz">
 
-    <div class="heart">❤️</div>
+    <h1>Μια σημαντική ερώτηση... 💗</h1>
 
-    <h1>Μια σημαντική ερώτηση...</h1>
+    <div class="counter" id="counter">
+        Ερώτηση 1 από 6
+    </div>
 
-    <p id="question">
-        Με αγαπάς; 🥹
-    </p>
+    <div class="question" id="question">
+        Με αγαπάς; 🥹❤️
+    </div>
 
-    <button id="yes">ΝΑΙ ❤️</button>
-    <button id="no">ΟΧΙ 😭</button>
-
-</div>
-
-
-<div class="box" id="result">
-
-    <div class="heart">💖</div>
-
-    <h1>ΤΟ ΗΞΕΡΑ 😭❤️</h1>
-
-    <p>
-        Ήξερα ότι θα πεις ΝΑΙ 🥹
-    </p>
-
-    <p>
-        Είσαι officially υποχρεωμένος/η να χαμογελάσεις τώρα. 😌
-    </p>
+    <div class="buttons">
+        <button id="yes">ΝΑΙ ❤️</button>
+        <button id="no">ΟΧΙ 😈</button>
+    </div>
 
 </div>
 
+<div class="container" id="result">
+
+    <div class="big-heart">💗</div>
+
+    <div class="result-text">
+        ΤΟ ΗΞΕΡΑΑΑ 😭❤️
+    </div>
+
+    <p class="small-text">
+        Ήξερα ότι θα έλεγες ΝΑΙ! 🥹🫶
+    </p>
+
+    <p>
+        💕 💕 💕
+    </p>
+
+</div>
 
 <script>
 
-const noButton = document.getElementById("no");
+const questions = [
+    "Με αγαπάς; 🥹❤️",
+    "Με σκέφτεσαι όταν δεν μιλάμε; 💭💕",
+    "Είμαι το αγαπημένο σου άτομο; 🫶",
+    "Θα με αντέξεις για πολύ ακόμα; 😂❤️",
+    "Είμαι σημαντικός/ή για σένα; 💗",
+    "Τελευταία ερώτηση... Με αγαπάς ΠΟΛΥ; 😭❤️"
+];
+
+let currentQuestion = 0;
+
+const questionText = document.getElementById("question");
+const counter = document.getElementById("counter");
 const yesButton = document.getElementById("yes");
+const noButton = document.getElementById("no");
+const quiz = document.getElementById("quiz");
+const result = document.getElementById("result");
 
-noButton.addEventListener("mouseover", moveButton);
-noButton.addEventListener("touchstart", moveButton);
+yesButton.addEventListener("click", function() {
 
-function moveButton() {
+    currentQuestion++;
+
+    if (currentQuestion >= questions.length) {
+
+        quiz.style.display = "none";
+        result.style.display = "block";
+
+        createHearts();
+
+        return;
+    }
+
+    questionText.textContent = questions[currentQuestion];
+
+    counter.textContent =
+        "Ερώτηση " + (currentQuestion + 1) +
+        " από " + questions.length;
+
+    // Κάθε φορά που πατάει ΝΑΙ,
+    // το κουμπί γίνεται λίγο μεγαλύτερο 😭
+    yesButton.style.transform =
+        "scale(" + (1 + currentQuestion * 0.05) + ")";
+
+});
+
+function moveNoButton() {
 
     const maxX = window.innerWidth - noButton.offsetWidth - 20;
     const maxY = window.innerHeight - noButton.offsetHeight - 20;
@@ -140,12 +243,74 @@ function moveButton() {
     noButton.style.top = y + "px";
 }
 
-yesButton.addEventListener("click", function() {
+// PC
+noButton.addEventListener("mouseover", moveNoButton);
 
-    document.getElementById("questionBox").style.display = "none";
-    document.getElementById("result").style.display = "block";
-
+// Κινητό
+noButton.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    moveNoButton();
 });
+
+// Αν somehow πατήσει ΟΧΙ
+noButton.addEventListener("click", moveNoButton);
+
+
+function createHearts() {
+
+    const hearts = ["❤️", "💗", "💕", "💖", "💓", "💘"];
+
+    for (let i = 0; i < 30; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.textContent =
+            hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        heart.style.fontSize =
+            (18 + Math.random() * 25) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }
+}
+
+// Συνεχόμενες μικρές καρδούλες στο background
+setInterval(() => {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts = ["❤️", "💕", "💗", "✨"];
+
+    heart.textContent =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+
+}, 700);
 
 </script>
 
